@@ -1,0 +1,156 @@
+shape: sequence_diagram
+c: {
+  label: Client
+  shape: person
+}
+w: {
+  label: Worker
+  shape: hexagon
+}
+h: {
+  label: History Service
+  shape: oval
+}
+r: {
+  label: Update Registry
+  shape: oval
+}
+ms: {
+  label: Mutable State\nUpdateInfo\n\n(in-memory)
+  shape: oval
+}
+msdb: {
+  label: Mutable State\nUpdateInfo
+  shape: cylinder
+}
+hdb: {
+  label: History Events
+  shape: cylinder
+}
+
+RequestUpdate: "" {
+  c.s1 -> h.s1: Request update
+  link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=135
+
+  LoadMutableState: "" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/api/update_workflow_util.go?line=50
+    msdb.s1 -> ms.s1: LoadMutableState
+  }
+
+  GetUpdateRegistry: "" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/context.go?line=860
+    h.s1 -> r.s1: GetUpdateRegistry
+  }
+
+  RequestUpdate: "updateworkflow.RequestUpdate(request)" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=328
+
+    FindOrCreate: "" {
+      link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=329
+      h.s1 -> r.s1: upd := FindOrCreate(request.UpdateId)
+      GetUpdateOutcome: "" {
+        link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/update/registry.go?line=346
+        ms.s1 -> r.s1: GetUpdateOutcome(request.UpdateId)
+      }
+    }
+
+    Upd_Request: "" {
+      link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=334
+      r.s1 -> r.s1: upd.Request(request)
+      r.s1."Admitted ⟹ Requested\n\nin-memory update w/ request payload"
+    }
+  }
+
+  ScheduleWFT: "Schedule WFT" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=158
+    h.s1 -> h.s1
+    h.s1."Schedule WFT\n\n(Speculative or normal)"
+  }
+}
+
+WFTCompleted: "" {
+  w.s2 -> h.s2: WFTCompleted\n(Accept Update)
+  link: https://github.com/temporalio/temporal/blob/main/service/history/workflow_task_handler.go?line=335
+
+  Find: "" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/workflow_task_handler.go?line=354
+    h.s2 -> r.s2: upd := Find(msg.ProtocolInstanceId)
+  }
+
+  Upd_Accept: "" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/update/update.go?line=445
+    r.s2 -> ms.s2: ms.AddWorkflowExecutionUpdateAcceptedEvent(request)
+
+    MS_ApplyWorkflowExecutionUpdateAcceptedEvent: "" {
+      link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/mutable_state_impl.go?line=3523
+      ms.s2 -> msdb.s2: History Pointer
+    }
+
+    CreateWorkflowExecutionUpdateAcceptedEvent: "" {
+      link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/mutable_state_impl.go?line=3516
+      ms.s2 -> hdb.s2: History Event\nw/ request payload
+    }
+
+    hdb.s2."Requested ⟹ Accepted\n\nUpdateAccepted event w/ request payload"
+  }
+}
+
+Reset: "" {
+  c.s3 -> h.s3: Reset Workflow
+  link: https://github.com/temporalio/temporal/blob/main/service/history/api/resetworkflow/api.go?line=47
+  ResetWorkflow: "ResetWorkflow" {
+    link: https://github.com/temporalio/temporal/blob/main/service/history/ndc/workflow_resetter.go?line=115
+
+    reapplyEvents: {
+      link: https://github.com/temporalio/temporal/blob/main/service/history/ndc/workflow_resetter.go?line=760
+
+      MS_ApplyWorkflowExecutionUpdateRequestedEvent: "" {
+        link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/mutable_state_impl.go?line=3628
+        ms.s3 -> msdb.s3: HistoryPointer
+      }
+
+      CreateWorkflowExecutionUpdateRequestedEvent: "" {
+        link: https://github.com/temporalio/temporal/blob/main/service/history/historybuilder/history_builder.go?line=395
+        ms.s3 -> hdb.s3: History Event\n/w request payload\nand origin (Reset vs Start-Update)
+      }
+    }
+
+    hdb.s3."Admitted ⟹ Requested\n\nUpdateRequested event w/ request payload"
+
+    ResetRequestUpdate: "updateworkflow.RequestUpdate(event.request)" {
+      link: https://github.com/temporalio/temporal/blob/main/service/history/ndc/workflow_resetter.go?line=255
+
+      FindOrCreate: "" {
+        link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=329
+        h.s3 -> r.s3: upd := FindOrCreate(request.UpdateId)
+        GetUpdateOutcome: "" {
+          link: https://github.com/temporalio/temporal/blob/main/service/history/workflow/update/registry.go?line=346
+          ms.s3 -> r.s3: GetUpdateOutcome(request.UpdateId)
+        }
+      }
+
+      Upd_Request: "" {
+        link: https://github.com/temporalio/temporal/blob/main/service/history/api/updateworkflow/api.go?line=334
+        r.s3 -> r.s3: upd.Request(request)
+        r.s3."in-memory update w/ request payload"
+      }
+    }
+  }
+}
+
+*.(** -> **)[*].style: {
+  font-color: black
+  stroke: darkblue
+}
+c.style: {
+  stroke: green
+}
+w.style: {
+  stroke: green
+}
+msdb.style: {
+  stroke: black
+}
+hdb.style: {
+  stroke: black
+}
