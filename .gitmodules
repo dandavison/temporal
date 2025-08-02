@@ -1,0 +1,42 @@
+[submodule "src/api"]
+	path = src/api
+	url = org-56493103@github.com:temporalio/api
+[submodule "src/server"]
+	path = src/server
+	url = org-56493103@github.com:temporalio/temporal
+[submodule "src/sdk-go"]
+	path = src/sdk-go
+	url = org-56493103@github.com:temporalio/sdk-go
+[submodule "src/sdk-java"]
+	path = src/sdk-java
+	url = org-56493103@github.com:temporalio/sdk-java
+[submodule "src/sdk-python"]
+	path = src/sdk-python
+	url = org-56493103@github.com:temporalio/sdk-python
+[submodule "src/sdk-typescript"]
+	path = src/sdk-typescript
+	url = org-56493103@github.com:temporalio/sdk-typescript
+[submodule "src/samples-go"]
+	path = src/samples-go
+	url = org-56493103@github.com:temporalio/samples-go
+[submodule "src/samples-java"]
+	path = src/samples-java
+	url = org-56493103@github.com:temporalio/samples-java
+[submodule "src/samples-python"]
+	path = src/samples-python
+	url = org-56493103@github.com:temporalio/samples-python
+[submodule "src/samples-typescript"]
+	path = src/samples-typescript
+	url = org-56493103@github.com:temporalio/samples-typescript
+[submodule "src/nexus-sdk-go"]
+	path = src/nexus-sdk-go
+	url = org-56493103@github.com:nexus-rpc/sdk-go
+[submodule "src/nexus-sdk-java"]
+	path = src/nexus-sdk-java
+	url = org-56493103@github.com:nexus-rpc/sdk-java
+[submodule "src/nexus-sdk-python"]
+	path = src/nexus-sdk-python
+	url = org-56493103@github.com:nexus-rpc/sdk-python
+[submodule "src/nexus-sdk-typescript"]
+	path = src/nexus-sdk-typescript
+	url = org-56493103@github.com:nexus-rpc/sdk-typescript

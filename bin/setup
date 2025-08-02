@@ -1,0 +1,43 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "typer>=0.15",
+# ]
+# ///
+
+import os
+from pathlib import Path
+
+import typer
+
+app = typer.Typer()
+
+REPOS = [
+    ("temporalio/api", "api"),
+    ("temporalio/temporal", "server"),
+    ("temporalio/sdk-go", "sdk-go"),
+    ("temporalio/sdk-java", "sdk-java"),
+    ("temporalio/sdk-python", "sdk-python"),
+    ("temporalio/sdk-typescript", "sdk-typescript"),
+    ("temporalio/samples-go", "samples-go"),
+    ("temporalio/samples-java", "samples-java"),
+    ("temporalio/samples-python", "samples-python"),
+    ("temporalio/samples-typescript", "samples-typescript"),
+    ("nexus-rpc/sdk-go", "nexus-sdk-go"),
+    ("nexus-rpc/sdk-java", "nexus-sdk-java"),
+    ("nexus-rpc/sdk-python", "nexus-sdk-python"),
+    ("nexus-rpc/sdk-typescript", "nexus-sdk-typescript"),
+]
+
+
+@app.command()
+def submodule_add():
+    """Clone all Temporal repositories as git submodules."""
+    for repo_name, repo_dir in REPOS:
+        path = Path("src") / repo_dir
+        os.system(f"git submodule add org-56493103@github.com:{repo_name} {path}")
+
+
+if __name__ == "__main__":
+    app()
