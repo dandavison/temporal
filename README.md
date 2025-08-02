@@ -1,0 +1,1 @@
+A multi-submodule monorepo intended for agent-assisted Temporal SDK development tasks.
