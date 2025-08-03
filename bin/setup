@@ -19,14 +19,17 @@ REPOS = [
     ("temporalio/sdk-go", "sdk-go"),
     ("temporalio/sdk-java", "sdk-java"),
     ("temporalio/sdk-python", "sdk-python"),
+    ("temporalio/sdk-ruby", "sdk-ruby"),
     ("temporalio/sdk-typescript", "sdk-typescript"),
     ("temporalio/samples-go", "samples-go"),
     ("temporalio/samples-java", "samples-java"),
     ("temporalio/samples-python", "samples-python"),
+    ("temporalio/samples-ruby", "samples-ruby"),
     ("temporalio/samples-typescript", "samples-typescript"),
     ("nexus-rpc/sdk-go", "nexus-sdk-go"),
     ("nexus-rpc/sdk-java", "nexus-sdk-java"),
     ("nexus-rpc/sdk-python", "nexus-sdk-python"),
+    # ("nexus-rpc/sdk-ruby", "nexus-sdk-ruby"),
     ("nexus-rpc/sdk-typescript", "nexus-sdk-typescript"),
 ]
 

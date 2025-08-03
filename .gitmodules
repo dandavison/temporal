@@ -40,3 +40,9 @@
 [submodule "src/nexus-sdk-typescript"]
 	path = src/nexus-sdk-typescript
 	url = org-56493103@github.com:nexus-rpc/sdk-typescript
+[submodule "src/sdk-ruby"]
+	path = src/sdk-ruby
+	url = org-56493103@github.com:temporalio/sdk-ruby
+[submodule "src/samples-ruby"]
+	path = src/samples-ruby
+	url = org-56493103@github.com:temporalio/samples-ruby
