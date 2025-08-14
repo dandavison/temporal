@@ -39,7 +39,7 @@ REPOS = [
 def submodule_add():
     """Clone all Temporal repositories as git submodules."""
     for repo_name, repo_dir in REPOS:
-        path = Path("src") / repo_dir
+        path = Path("repos") / repo_dir
         os.system(f"git submodule add org-56493103@github.com:{repo_name} {path}")
 
 

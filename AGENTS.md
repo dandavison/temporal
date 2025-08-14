@@ -11,7 +11,7 @@ Temporal provides SDK libraries supplying primitives that perform all the diffic
 
 A codebase that uses Temporal can be divided into four "code contexts":
 
--  **"Client code"** - normal application code that possesses an instance of a Temporal gRPC client (e.g. `src/sdk-python/temporalio/client.py`, `src/sdk-go/client/`, `src/sdk-java/temporal-sdk/src/main/java/io/temporal/client/`) that it uses to start and interact with workflows (interactions include cancel, and sending Queries, Signals, and Updates). The client is connected to a specified server namespace and may only interact with workflows in that namespace.
+-  **"Client code"** - normal application code that possesses an instance of a Temporal gRPC client (e.g. `repos/sdk-python/temporalio/client.py`, `repos/sdk-go/client/`, `repos/sdk-java/temporal-sdk/src/main/java/io/temporal/client/`) that it uses to start and interact with workflows (interactions include cancel, and sending Queries, Signals, and Updates). The client is connected to a specified server namespace and may only interact with workflows in that namespace.
 
 - **Workflows** - a workflow contains a main function that orchestrates invocations of activities, nexus operations, and child workflows, and can wait for arbitrary durations until arbitrary conditions become true, and can signal another workflow in the same namespace. It may also define handlers for Signals, Queries, and Updates. The code must be 100% deterministic (the SDKs supply deterministic versions of PRNGs, UUID generators, hash-map based container data structures, concurrent task schedulers, etc), and in general should not perform any I/O. Each SDK uses a deterministic cooperative multitasking concurrency runtime to execute workflow code. In Go and Java this is a custom scheduler on top of goroutines and threads respectively, in Python it is the asyncio event loop, and in Typescript it is the native event loop.
 
@@ -19,9 +19,9 @@ A codebase that uses Temporal can be divided into four "code contexts":
 
 - **Nexus operations** - a nexus operation is a normal function like an activity that must either return a synchronous result within a short amount of time, or kick off an asynchronous execution (typically a workflow) to handle the task and respond synchronously with an operation token.
 
-The SDKs implement "workers" (e.g. `src/sdk-python/temporalio/worker`, `src/sdk-go/worker/`, `src/sdk-java/temporal-sdk/src/main/java/io/temporal/worker/`) that poll for workflow/activity/nexus tasks and execute them as appropriate for the task type. Users must run Temporal worker processes themselves. A Temporal worker contains a connected instance of the same gRPC client abstraction as is used by the user's Client code.
+The SDKs implement "workers" (e.g. `repos/sdk-python/temporalio/worker`, `repos/sdk-go/worker/`, `repos/sdk-java/temporal-sdk/src/main/java/io/temporal/worker/`) that poll for workflow/activity/nexus tasks and execute them as appropriate for the task type. Users must run Temporal worker processes themselves. A Temporal worker contains a connected instance of the same gRPC client abstraction as is used by the user's Client code.
 
-For Python, Typescript, .NET, and Ruby, all communication between the SDK's gRPC Client and the server occurs via the shared `sdk-core` Rust library, thus for them two sets of protobuf definitions are in use: those for communication between "lang" and sdk-core (`src/sdk-core/sdk-core-protos/protos/local/temporal/sdk/core/`) and those for communication between sdk-core and the server (`src/api`). In contrast, neither Go nor Java use the Rust library and hence they only use the `src/api` protos.
+For Python, Typescript, .NET, and Ruby, all communication between the SDK's gRPC Client and the server occurs via the shared `sdk-core` Rust library, thus for them two sets of protobuf definitions are in use: those for communication between "lang" and sdk-core (`repos/sdk-core/sdk-core-protos/protos/local/temporal/sdk/core/`) and those for communication between sdk-core and the server (`repos/api`). In contrast, neither Go nor Java use the Rust library and hence they only use the `repos/api` protos.
 
 
 A high-level overview of how Temporal Workflows work internally follows:
@@ -91,24 +91,24 @@ next WFT, and so on until the Workflow closes (completes successfully, fails, is
 
 
 ## Repository layout
-- `src/api` - gRPC API for communication between `server` and {`sdk-core`, `sdk-go`, `sdk-java`}
-- `src/documentation` - the source lcontent from which https://docs.temporal.io/ is built
-- `src/features` - cross-sdk tests for product behavior that all sdks should exhibit
-- `src/server` - Temporal server
-- `src/sdk-python/temporalio/bridge/sdk-core` - Rust library submodule (`sdk-typescript`, `sdk-dotnet`, `sdk-ruby` also have this submodule)
-- `src/sdk-go` - Temporal Go SDK
-- `src/sdk-java` - Temporal Java SDK
-- `src/sdk-python` - Temporal Python SDK
-- `src/sdk-ruby` - Temporal Ruby SDK
-- `src/sdk-typescript` - Temporal Typescript SDK
-- `src/samples-go` - Temporal Go SDK samples
-- `src/samples-java` - Temporal Java SDK samples
-- `src/samples-python` - Temporal Python SDK samples
-- `src/samples-python` - Temporal Ruby SDK samples
-- `src/samples-typescript` - Temporal Typescript SDK samples
-- `src/nexus-sdk-go` - Nexus Go SDK
-- `src/nexus-sdk-java` - Nexus Java SDK
-- `src/nexus-sdk-python` - Nexus Python SDK
-- `src/nexus-sdk-typescript` - Nexus Typescript SDK
+- `repos/api` - gRPC API for communication between `server` and {`sdk-core`, `sdk-go`, `sdk-java`}
+- `repos/documentation` - the source lcontent from which https://docs.temporal.io/ is built
+- `repos/features` - cross-sdk tests for product behavior that all sdks should exhibit
+- `repos/server` - Temporal server
+- `repos/sdk-python/temporalio/bridge/sdk-core` - Rust library submodule (`sdk-typescript`, `sdk-dotnet`, `sdk-ruby` also have this submodule)
+- `repos/sdk-go` - Temporal Go SDK
+- `repos/sdk-java` - Temporal Java SDK
+- `repos/sdk-python` - Temporal Python SDK
+- `repos/sdk-ruby` - Temporal Ruby SDK
+- `repos/sdk-typescript` - Temporal Typescript SDK
+- `repos/samples-go` - Temporal Go SDK samples
+- `repos/samples-java` - Temporal Java SDK samples
+- `repos/samples-python` - Temporal Python SDK samples
+- `repos/samples-python` - Temporal Ruby SDK samples
+- `repos/samples-typescript` - Temporal Typescript SDK samples
+- `repos/nexus-sdk-go` - Nexus Go SDK
+- `repos/nexus-sdk-java` - Nexus Java SDK
+- `repos/nexus-sdk-python` - Nexus Python SDK
+- `repos/nexus-sdk-typescript` - Nexus Typescript SDK
 
 
