@@ -1,54 +1,72 @@
 [submodule "repos/api"]
 	path = repos/api
 	url = org-56493103@github.com:temporalio/api
+	branch = master
 [submodule "repos/server"]
 	path = repos/server
 	url = org-56493103@github.com:temporalio/temporal
+	branch = main
 [submodule "repos/sdk-go"]
 	path = repos/sdk-go
 	url = org-56493103@github.com:temporalio/sdk-go
+	branch = master
 [submodule "repos/sdk-java"]
 	path = repos/sdk-java
 	url = org-56493103@github.com:temporalio/sdk-java
+	branch = master
 [submodule "repos/sdk-python"]
 	path = repos/sdk-python
 	url = org-56493103@github.com:temporalio/sdk-python
+	branch = main
 [submodule "repos/sdk-typescript"]
 	path = repos/sdk-typescript
 	url = org-56493103@github.com:temporalio/sdk-typescript
+	branch = main
 [submodule "repos/samples-go"]
 	path = repos/samples-go
 	url = org-56493103@github.com:temporalio/samples-go
+	branch = main
 [submodule "repos/samples-java"]
 	path = repos/samples-java
 	url = org-56493103@github.com:temporalio/samples-java
+	branch = main
 [submodule "repos/samples-python"]
 	path = repos/samples-python
 	url = org-56493103@github.com:temporalio/samples-python
+	branch = main
 [submodule "repos/samples-typescript"]
 	path = repos/samples-typescript
 	url = org-56493103@github.com:temporalio/samples-typescript
+	branch = main
 [submodule "repos/nexus-sdk-go"]
 	path = repos/nexus-sdk-go
 	url = org-56493103@github.com:nexus-rpc/sdk-go
+	branch = main
 [submodule "repos/nexus-sdk-java"]
 	path = repos/nexus-sdk-java
 	url = org-56493103@github.com:nexus-rpc/sdk-java
+	branch = main
 [submodule "repos/nexus-sdk-python"]
 	path = repos/nexus-sdk-python
 	url = org-56493103@github.com:nexus-rpc/sdk-python
+	branch = main
 [submodule "repos/nexus-sdk-typescript"]
 	path = repos/nexus-sdk-typescript
 	url = org-56493103@github.com:nexus-rpc/sdk-typescript
+	branch = main
 [submodule "repos/sdk-ruby"]
 	path = repos/sdk-ruby
 	url = org-56493103@github.com:temporalio/sdk-ruby
+	branch = main
 [submodule "repos/samples-ruby"]
 	path = repos/samples-ruby
 	url = org-56493103@github.com:temporalio/samples-ruby
+	branch = main
 [submodule "repos/features"]
 	path = repos/features
 	url = org-56493103@github.com:temporalio/features
+	branch = main
 [submodule "repos/documentation"]
 	path = repos/documentation
 	url = org-56493103@github.com:temporalio/documentation
+	branch = main

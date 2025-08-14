@@ -14,33 +14,33 @@ import typer
 app = typer.Typer()
 
 REPOS = [
-    ("temporalio/api", "api"),
-    ("temporalio/documentation", "documentation"),
-    ("temporalio/features", "features"),
-    ("temporalio/temporal", "server"),
-    ("temporalio/sdk-go", "sdk-go"),
-    ("temporalio/sdk-java", "sdk-java"),
-    ("temporalio/sdk-python", "sdk-python"),
-    ("temporalio/sdk-ruby", "sdk-ruby"),
-    ("temporalio/sdk-typescript", "sdk-typescript"),
-    ("temporalio/samples-go", "samples-go"),
-    ("temporalio/samples-java", "samples-java"),
-    ("temporalio/samples-python", "samples-python"),
-    ("temporalio/samples-ruby", "samples-ruby"),
-    ("temporalio/samples-typescript", "samples-typescript"),
-    ("nexus-rpc/sdk-go", "nexus-sdk-go"),
-    ("nexus-rpc/sdk-java", "nexus-sdk-java"),
-    ("nexus-rpc/sdk-python", "nexus-sdk-python"),
-    ("nexus-rpc/sdk-typescript", "nexus-sdk-typescript"),
+    ("temporalio/api", "api", "master"),
+    ("temporalio/documentation", "documentation", "main"),
+    ("temporalio/features", "features", "main"),
+    ("temporalio/temporal", "server", "main"),
+    ("temporalio/sdk-go", "sdk-go", "master"),
+    ("temporalio/sdk-java", "sdk-java", "master"),
+    ("temporalio/sdk-python", "sdk-python", "main"),
+    ("temporalio/sdk-ruby", "sdk-ruby", "main"),
+    ("temporalio/sdk-typescript", "sdk-typescript", "main"),
+    ("temporalio/samples-go", "samples-go", "main"),
+    ("temporalio/samples-java", "samples-java", "main"),
+    ("temporalio/samples-python", "samples-python", "main"),
+    ("temporalio/samples-ruby", "samples-ruby", "main"),
+    ("temporalio/samples-typescript", "samples-typescript", "main"),
+    ("nexus-rpc/sdk-go", "nexus-sdk-go", "main"),
+    ("nexus-rpc/sdk-java", "nexus-sdk-java", "main"),
+    ("nexus-rpc/sdk-python", "nexus-sdk-python", "main"),
+    ("nexus-rpc/sdk-typescript", "nexus-sdk-typescript", "main"),
 ]
 
 
 @app.command()
 def submodule_add():
     """Clone all Temporal repositories as git submodules."""
-    for repo_name, repo_dir in REPOS:
+    for repo_name, repo_dir, branch in REPOS:
         path = Path("repos") / repo_dir
-        os.system(f"git submodule add org-56493103@github.com:{repo_name} {path}")
+        os.system(f"git submodule add -b {branch} org-56493103@github.com:{repo_name} {path}")
 
 
 if __name__ == "__main__":
