@@ -70,3 +70,35 @@
 	path = repos/documentation
 	url = org-56493103@github.com:temporalio/documentation
 	branch = main
+[submodule "repos/adk-python"]
+	path = repos/adk-python
+	url = git@github.com:google/adk-python
+	branch = main
+[submodule "repos/mcp-modelcontextprotocol"]
+	path = repos/mcp-modelcontextprotocol
+	url = git@github.com:modelcontextprotocol/modelcontextprotocol
+	branch = main
+[submodule "repos/mcp-python-sdk"]
+	path = repos/mcp-python-sdk
+	url = git@github.com:modelcontextprotocol/python-sdk
+	branch = main
+[submodule "repos/mcp-servers"]
+	path = repos/mcp-servers
+	url = git@github.com:modelcontextprotocol/servers
+	branch = main
+[submodule "repos/nexus-mcp-python"]
+	path = repos/nexus-mcp-python
+	url = git@github.com:bergundy/nexus-mcp-python.git
+	branch = main
+[submodule "repos/openai-agents-python"]
+	path = repos/openai-agents-python
+	url = org-14957082@github.com:openai/openai-agents-python
+	branch = main
+[submodule "repos/openai-python"]
+	path = repos/openai-python
+	url = org-14957082@github.com:openai/openai-python
+	branch = main
+[submodule "repos/temporal-ai-agent"]
+	path = repos/temporal-ai-agent
+	url = org-195963520@github.com:temporal-community/temporal-ai-agent.git
+	branch = main
