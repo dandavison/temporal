@@ -102,3 +102,7 @@
 	path = repos/temporal-ai-agent
 	url = org-195963520@github.com:temporal-community/temporal-ai-agent.git
 	branch = main
+[submodule "repos/nexus-api"]
+	path = repos/nexus-api
+	url = org-121589664@github.com:nexus-rpc/api.git
+	branch = main
