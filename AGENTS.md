@@ -1,5 +1,6 @@
 Temporal (https://temporal.io/) is a durable execution platform.
 This is a monorepo for Temporal development.
+It contains repos relevant to Temporal SDK development and the contemporary agentic AI ecosystem.
 
 ## System function and architecture
 
@@ -91,24 +92,33 @@ next WFT, and so on until the Workflow closes (completes successfully, fails, is
 
 
 ## Repository layout
-- `repos/api` - gRPC API for communication between `server` and {`sdk-core`, `sdk-go`, `sdk-java`}
-- `repos/documentation` - the source lcontent from which https://docs.temporal.io/ is built
-- `repos/features` - cross-sdk tests for product behavior that all sdks should exhibit
-- `repos/server` - Temporal server
-- `repos/sdk-python/temporalio/bridge/sdk-core` - Rust library submodule (`sdk-typescript`, `sdk-dotnet`, `sdk-ruby` also have this submodule)
-- `repos/sdk-go` - Temporal Go SDK
-- `repos/sdk-java` - Temporal Java SDK
-- `repos/sdk-python` - Temporal Python SDK
-- `repos/sdk-ruby` - Temporal Ruby SDK
-- `repos/sdk-typescript` - Temporal Typescript SDK
-- `repos/samples-go` - Temporal Go SDK samples
-- `repos/samples-java` - Temporal Java SDK samples
-- `repos/samples-python` - Temporal Python SDK samples
-- `repos/samples-python` - Temporal Ruby SDK samples
-- `repos/samples-typescript` - Temporal Typescript SDK samples
+- `repos/adk-python` - Google ADK Python SDK
+- `repos/api` - Temporal gRPC API for communication between `server` and {`sdk-core`, `sdk-go`, `sdk-java`}
+- `repos/documentation` - Temporal docs: the source from which https://docs.temporal.io/ is built
+- `repos/features` - Temporal cross-sdk tests for product behavior that all sdks should exhibit
+- `repos/mcp-modelcontextprotocol` - MCP schema and spec
+- `repos/mcp-python-sdk` - MCP Python SDK
+- `repos/mcp-servers` - MCP reference servers
+- `repos/nexus-api` - Nexus spec
+- `repos/nexus-mcp-python` - Nexus MCP bridge Python
 - `repos/nexus-sdk-go` - Nexus Go SDK
 - `repos/nexus-sdk-java` - Nexus Java SDK
 - `repos/nexus-sdk-python` - Nexus Python SDK
 - `repos/nexus-sdk-typescript` - Nexus Typescript SDK
+- `repos/openai-agents-python` - OpenAI Agents SDK
+- `repos/openai-python` - OpenAI SDK
+- `repos/samples-go` - Temporal Go SDK samples
+- `repos/samples-java` - Temporal Java SDK samples
+- `repos/samples-python` - Temporal Python SDK samples
+- `repos/samples-ruby` - Temporal Ruby SDK samples
+- `repos/samples-typescript` - Temporal Typescript SDK samples
+- `repos/sdk-go` - Temporal Go SDK
+- `repos/sdk-java` - Temporal Java SDK
+- `repos/sdk-python/temporalio/bridge/sdk-core` - Temporal rust SDK library submodule (`sdk-typescript`, `sdk-dotnet`, `sdk-ruby` also have this submodule)
+- `repos/sdk-python` - Temporal Python SDK
+- `repos/sdk-ruby` - Temporal Ruby SDK
+- `repos/sdk-typescript` - Temporal Typescript SDK
+- `repos/server` - Temporal server
+- `repos/temporal-ai-agent` - Temporal AI agent sample
 
 
