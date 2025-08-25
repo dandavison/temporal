@@ -114,3 +114,6 @@
 	path = repos/a2a-python
 	url = https://github.com/a2aproject/a2a-python.git
 	branch = main
+[submodule "repos/nexus-a2a-python"]
+	path = repos/nexus-a2a-python
+	url = git@github.com:dandavison/nexus-a2a-python.git
