@@ -92,6 +92,7 @@ next WFT, and so on until the Workflow closes (completes successfully, fails, is
 
 
 ## Repository layout
+- `repos/adk-docs` - Google ADK docs
 - `repos/adk-python` - Google ADK Python SDK
 - `repos/api` - Temporal gRPC API for communication between `server` and {`sdk-core`, `sdk-go`, `sdk-java`}
 - `repos/documentation` - Temporal docs: the source from which https://docs.temporal.io/ is built
