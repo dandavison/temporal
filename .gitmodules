@@ -117,3 +117,6 @@
 [submodule "repos/nexus-a2a-python"]
 	path = repos/nexus-a2a-python
 	url = git@github.com:dandavison/nexus-a2a-python.git
+[submodule "repos/sdk-dotnet"]
+	path = repos/sdk-dotnet
+	url = org-56493103@github.com:temporalio/sdk-dotnet.git
